@@ -3,16 +3,21 @@
 
 博客链接：https://kexue.fm/archives/7867
 
-## 权重下载
+## 模型下载
 
 首先，要想办法下载Google开放的权重，最简单的方式，是找一台能科学上网的服务器，在上面安装gsutil，然后执行
 ```shell
 gsutil cp -r gs://t5-data/pretrained_models/mt5/small .
 ```
 
-## config
+T5使用sentencepiece作为tokenizer，mT5的tokenizer模型下载地址为
+```shell
+gsutil cp -r gs://t5-data/vocabs/mc4.250000.100extra/sentencepiece.model .
+```
 
-T5模型的配置文件是gin格式的，这不符合bert4keras的输入，使用者请根据下述模版构建对应的config.json文件。
+## Config
+
+T5模型的配置文件是gin格式的，这不符合bert4keras的输入，使用者请根据所给的gin和下述模版构建对应的config.json文件。
 
 下面是mT5 small版的参考config.json：
 ```python
