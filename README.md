@@ -17,6 +17,8 @@ T5使用sentencepiece作为tokenizer，mT5的tokenizer模型下载地址为
 gsutil cp -r gs://t5-data/vocabs/mc4.250000.100extra/sentencepiece.model .
 ```
 
+笔者精简好的tokenizer文件：[sentencepiece_cn.model](https://github.com/bojone/t5_in_bert4keras/blob/main/tokenizer/sentencepiece_cn.model)和[sentencepiece_cn_keep_tokens.json](https://github.com/bojone/t5_in_bert4keras/blob/main/tokenizer/sentencepiece_cn_keep_tokens.json)
+
 ## Config
 
 T5模型的配置文件是gin格式的，这不符合bert4keras的输入，使用者请根据所给的gin和下述模版构建对应的config.json文件。
@@ -41,7 +43,58 @@ T5模型的配置文件是gin格式的，这不符合bert4keras的输入，使�
 
 ## 基本使用
 
+```python
+# 模型路径
+config_path = '/root/kg/bert/mt5/mt5_small/t5_config.json'
+checkpoint_path = '/root/kg/bert/mt5/mt5_small/model.ckpt-1000000'
+spm_path = '/root/kg/bert/mt5/sentencepiece.model'
+
+# 加载分词器
+tokenizer = SpTokenizer(spm_path, token_start=None, token_end='&lt;/s&gt;')
+
+# 加载模型
+t5 = build_transformer_model(
+    config_path=config_path,
+    checkpoint_path=checkpoint_path,
+    model='t5.1.1',
+    return_keras_model=False,
+    name='T5',
+)
+
+encoder = t5.encoder
+decoder = t5.decoder
+model = t5.model
+```
+
 ## 中文优化
+
+```python
+# 模型路径
+config_path = '/root/kg/bert/mt5/mt5_base/t5_config.json'
+checkpoint_path = '/root/kg/bert/mt5/mt5_base/model.ckpt-1000000'
+spm_path = '/root/kg/bert/mt5/sentencepiece_cn.model'
+keep_tokens_path = '/root/kg/bert/mt5/sentencepiece_cn_keep_tokens.json'
+
+# 加载分词器
+tokenizer = SpTokenizer(spm_path, token_start=None, token_end='&lt;/s&gt;')
+keep_tokens = json.load(open(keep_tokens_path))
+
+# 加载模型
+t5 = build_transformer_model(
+    config_path=config_path,
+    checkpoint_path=checkpoint_path,
+    keep_tokens=keep_tokens,
+    model='t5.1.1',
+    return_keras_model=False,
+    name='T5',
+)
+
+encoder = t5.encoder
+decoder = t5.decoder
+model = t5.model
+```
+
+细节请参考：[task_autotitle_csl.py](https://github.com/bojone/t5_in_bert4keras/blob/main/task_autotitle_csl.py)。
 
 ## 交流联系
 QQ交流群：67729435，微信群请加机器人微信号spaces_ac_cn
