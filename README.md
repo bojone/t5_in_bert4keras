@@ -3,6 +3,8 @@
 
 博客链接：https://kexue.fm/archives/7867
 
+本项目实验环境：tensorflow 1.14 + keras 2.3.1 + bert4keras 0.9.1
+
 ## 模型下载
 
 首先，要想办法下载Google开放的权重，最简单的方式，是找一台能科学上网的服务器，在上面安装gsutil，然后执行
