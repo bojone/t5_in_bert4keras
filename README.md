@@ -10,6 +10,28 @@
 gsutil cp -r gs://t5-data/pretrained_models/mt5/small .
 ```
 
+## config
+
+T5模型的配置文件是gin格式的，这不符合bert4keras的输入，使用者请根据下述模版构建对应的config.json文件。
+
+下面是mT5 small版的参考config.json：
+```python
+{
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 512,
+  "initializer_range": 0.02,
+  "intermediate_size": 1024,
+  "num_attention_heads": 6,
+  "attention_head_size": 64,
+  "num_hidden_layers": 8,
+  "vocab_size": 250112,
+  "hidden_act": ["gelu", "linear"]
+}
+```
+
+一般要修改的是`hidden_size`、`intermediate_size`、`num_attention_heads`、`attention_head_size`和`num_hidden_layers`这几个参数。
+
 ## 基本使用
 
 ## 中文优化
