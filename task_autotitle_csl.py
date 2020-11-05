@@ -116,6 +116,7 @@ class AutoTitle(AutoRegressiveDecoder):
         return tokenizer.decode(output_ids)
 
 
+# 注：这里有一个很让人不解的设置，T5的<bos>标记id是0，即T5的<bos>和<pad>其实都是0
 autotitle = AutoTitle(start_id=0, end_id=tokenizer._token_end_id, maxlen=32)
 
 
