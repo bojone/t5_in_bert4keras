@@ -19,6 +19,8 @@ gsutil cp -r gs://t5-data/vocabs/mc4.250000.100extra/sentencepiece.model .
 
 笔者精简好的tokenizer文件：[sentencepiece_cn.model](https://github.com/bojone/t5_in_bert4keras/blob/main/tokenizer/sentencepiece_cn.model)和[sentencepiece_cn_keep_tokens.json](https://github.com/bojone/t5_in_bert4keras/blob/main/tokenizer/sentencepiece_cn_keep_tokens.json)
 
+另外，small版和base版，也整理到[百度网盘](https://pan.baidu.com/s/1YWaStqB6Epkxfyx6WcOzWw)(mwfc)了。
+
 ## Config
 
 T5模型的配置文件是gin格式的，这不符合bert4keras的输入，使用者请根据所给的gin和下述模版构建对应的config.json文件。
