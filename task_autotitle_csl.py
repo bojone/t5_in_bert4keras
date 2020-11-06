@@ -116,7 +116,7 @@ class AutoTitle(AutoRegressiveDecoder):
         return tokenizer.decode(output_ids)
 
 
-# 注：这里有一个很让人不解的设置，T5的<bos>标记id是0，即T5的<bos>和<pad>其实都是0
+# 注：T5有一个很让人不解的设置，它的<bos>标记id是0，即<bos>和<pad>其实都是0
 autotitle = AutoTitle(start_id=0, end_id=tokenizer._token_end_id, maxlen=32)
 
 
@@ -170,7 +170,7 @@ if __name__ == '__main__':
     evaluator = Evaluator()
     train_generator = data_generator(train_data, batch_size)
 
-    model.fit_generator(
+    model.fit(
         train_generator.forfit(),
         steps_per_epoch=len(train_generator),
         epochs=epochs,
