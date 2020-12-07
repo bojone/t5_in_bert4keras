@@ -34,7 +34,7 @@ sp1 = spm.SentencePieceProcessor()
 sp2 = spm.SentencePieceProcessor()
 
 sp1.load(old_model)
-sp2.Load(new_model)
+sp2.load(new_model)
 
 keep_tokens = []
 
