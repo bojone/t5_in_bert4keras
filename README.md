@@ -28,7 +28,6 @@ T5模型的配置文件是gin格式的，这不符合bert4keras的输入，使�
 下面是mT5 small版的参考config.json：
 ```python
 {
-  "hidden_act": "gelu",
   "hidden_dropout_prob": 0.1,
   "hidden_size": 512,
   "initializer_range": 0.02,
